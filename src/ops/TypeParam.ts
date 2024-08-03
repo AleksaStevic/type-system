@@ -1,7 +1,7 @@
+import { Type } from '@type-system/types'
 import assert from 'assert'
-import Type from '../types/Type'
 
-class TypeParam extends Type {
+export class TypeParam extends Type {
 	private _t: Type | undefined = undefined
 
 	set t(t: Type | undefined) {
@@ -31,5 +31,3 @@ class TypeParam extends Type {
 		return this._t.toString()
 	}
 }
-
-export default TypeParam

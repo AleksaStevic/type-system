@@ -1,6 +1,6 @@
-import { InvalidNameError } from '../src/errors'
-import PrimitiveType from '../src/types/PrimitiveType'
-import TypeSystem from '../src/TypeSystem'
+import { InvalidNameError } from '@type-system/errors'
+import { PrimitiveType } from '@type-system/types'
+import TypeSystem from '@type-system/TypeSystem'
 
 describe('Type Creation', () => {
 	test('base type is created automatically', () => {
@@ -9,7 +9,7 @@ describe('Type Creation', () => {
 	})
 
 	test("can't create a base type", () => {
-		expect(() => new TypeSystem(['base'])).toThrowError(InvalidNameError)
+		expect(() => new TypeSystem(['base'])).toThrow(InvalidNameError)
 	})
 
 	test("can't create two types with the same name", () => {

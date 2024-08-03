@@ -1,14 +1,22 @@
 {
     "compilerOptions": {
-        "lib": ["es2022"],
-        "module": "commonjs",
+        "lib": [
+            "ES2022"
+        ],
         "target": "es2022",
-    
         "strict": true,
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-        "moduleResolution": "node",
-        "experimentalDecorators": true
-      }
-  }
+        "experimentalDecorators": true,
+        "moduleResolution": "Bundler",
+        "baseUrl": ".",
+        "paths": {
+            "@type-system/*": [
+                "./src/*"
+            ]
+        }
+    }
+}

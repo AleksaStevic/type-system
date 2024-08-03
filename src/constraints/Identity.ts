@@ -1,5 +1,5 @@
-import Type from '../../types/Type'
-import TypeConstraint from './TypeConstraint'
+import { Type } from '@type-system/types'
+import { TypeConstraint } from './TypeConstraint'
 
 export class Identity extends TypeConstraint {
 	constructor(private _t: Type) {

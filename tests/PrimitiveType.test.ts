@@ -1,4 +1,4 @@
-import PrimitiveType from '../src/types/PrimitiveType'
+import { PrimitiveType } from '@type-system/types'
 
 describe('Type parents', () => {
 	describe('set parent()', () => {

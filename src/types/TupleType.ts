@@ -1,6 +1,8 @@
-import Type from './Type'
+import { PrimitiveType } from './PrimitiveType'
+import { Type } from './Type'
+import { UnionType } from './UnionType'
 
-class TupleType extends Type {
+export class TupleType extends Type {
 	constructor(private _types: Type[]) {
 		super(`(${_types.map(t => t.name).join(',')})`)
 	}
@@ -10,6 +12,20 @@ class TupleType extends Type {
 	}
 
 	extends(t: Type): boolean {
+		if (t instanceof TupleType) {
+			if (this.name === t.name) return false
+			if (this._types.length !== t._types.length) return false
+			return this._types.every((mt, i) => mt.extends(t._types[i]))
+		}
+
+		if (t instanceof UnionType) {
+			const tuples = t.types.filter(
+				(tt): tt is TupleType => tt instanceof TupleType,
+			)
+
+			return tuples.some(tuple => this.extends(tuple))
+		}
+
 		return false
 	}
 
@@ -21,5 +37,3 @@ class TupleType extends Type {
 		return this.name
 	}
 }
-
-export default TupleType

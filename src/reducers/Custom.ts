@@ -1,7 +1,7 @@
-import Type from '../../types/Type'
-import RetType from './RetType'
+import { Type } from '@type-system/types'
+import { Reducer } from './Reducer'
 
-export class Custom extends RetType {
+export class Custom extends Reducer {
 	constructor(
 		private _getType: (types: Type[]) => Type,
 		private _toString: string,

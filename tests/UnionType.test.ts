@@ -1,4 +1,4 @@
-import TypeSystem from '../src/TypeSystem'
+import TypeSystem from '@type-system/TypeSystem'
 
 const bool = 'bool'
 const T = 'T'

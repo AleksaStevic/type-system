@@ -1,14 +1,14 @@
 import assert from 'assert'
-import Type from '../types/Type'
-import TypeConstraint from './type-constraint/TypeConstraint'
 import { zip } from '../utils'
-import RetType from './ret-type/RetType'
-import TypeParam from './TypeParam'
+import { TypeParam } from './TypeParam'
+import { TypeConstraint } from '@type-system/constraints'
+import { Reducer } from '@type-system/reducers'
+import { Type } from '@type-system/types'
 
-class Def {
+export class Def {
 	constructor(
 		private _params: (TypeConstraint | [TypeParam, TypeConstraint])[],
-		private _retType: RetType,
+		private _retType: Reducer,
 	) {}
 
 	get params() {
@@ -56,5 +56,3 @@ class Def {
 			.join(', ')}) -> ${this.retType.toString()}]`
 	}
 }
-
-export default Def

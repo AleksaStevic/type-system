@@ -1,7 +1,7 @@
-import Type from '../types/Type'
-import Def from './Def'
+import { Type } from '@type-system/types'
+import { Def } from './Def'
 
-class Op {
+export class Op {
 	private _defs: Def[] = []
 
 	constructor(private _name: string) {}
@@ -43,5 +43,3 @@ class Op {
 		return this.chooseDef(args)?.retType.getType(args)
 	}
 }
-
-export default Op

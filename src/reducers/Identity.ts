@@ -1,7 +1,7 @@
-import Type from '../../types/Type'
-import RetType from './RetType'
+import { Type } from '@type-system/types'
+import { Reducer } from './Reducer'
 
-export class Identity extends RetType {
+export class Identity extends Reducer {
 	constructor(private _t: Type) {
 		super()
 	}

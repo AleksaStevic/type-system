@@ -1,9 +1,19 @@
-import Type from './Type'
+import { Type } from './Type'
 import assert from 'assert'
-import UnionType from './UnionType'
-import TupleType from './TupleType'
+import { UnionType } from './UnionType'
+import { TupleType } from './TupleType'
 
-class PrimitiveType extends Type {
+/**
+ * Represents a primitive type.
+ *
+ * @remarks
+ * The `PrimitiveType` class extends the `Type` class and represents a primitive type in the system.
+ * It provides functionality for managing parent types, finding paths to other primitive types, and determining common types.
+ * Primitive types are types that are not composed of other types, such as numbers, strings, booleans, etc.
+ *
+ * @extends Type
+ */
+export class PrimitiveType extends Type {
 	private _parent: PrimitiveType | undefined
 
 	get parent(): PrimitiveType | undefined {
@@ -12,10 +22,7 @@ class PrimitiveType extends Type {
 
 	set parent(parent: PrimitiveType | undefined) {
 		assert(parent !== this, "Can't add self as parent.")
-		assert(
-			!parent?.extends(this),
-			"Can't add directi/indirect child as parent.",
-		)
+		assert(!parent?.extends(this), "Can't add direct/indirect child as parent.")
 		this._parent = parent
 	}
 
@@ -76,5 +83,3 @@ class PrimitiveType extends Type {
 		return this.name
 	}
 }
-
-export default PrimitiveType

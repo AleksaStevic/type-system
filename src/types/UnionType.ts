@@ -1,11 +1,12 @@
 import assert from 'assert'
 import { commonType } from '../utils'
-import PrimitiveType from './PrimitiveType'
-import Type from './Type'
-import TypeSystem from '../TypeSystem'
-import TupleType from './TupleType'
+import { PrimitiveType } from './PrimitiveType'
+import { Type } from './Type'
+import TypeSystem from '@type-system/TypeSystem'
+import { TupleType } from './TupleType'
 
-class UnionType extends Type {
+export class UnionType extends Type {
+	// @TODO missing type sorting
 	constructor(
 		private _types: Type[] = [],
 		name: string,
@@ -59,5 +60,3 @@ class UnionType extends Type {
 		return this._types.map(t => t.name).join('|')
 	}
 }
-
-export default UnionType

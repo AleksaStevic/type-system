@@ -1,3 +1,1 @@
-class IncompatibleOperators extends Error {}
-
-export default IncompatibleOperators
+export class IncompatibleOperators extends Error {}

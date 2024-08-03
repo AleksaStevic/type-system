@@ -1,9 +1,9 @@
 import assert from 'assert'
-import Type from '../../types/Type'
-import { commonType } from '../../utils'
-import RetType from './RetType'
+import { Reducer } from './Reducer'
+import { Type } from '@type-system/types'
+import { commonType } from '@type-system/utils'
 
-export class Widen extends RetType {
+export class Widen extends Reducer {
 	toString(): string {
 		return 'Widen'
 	}

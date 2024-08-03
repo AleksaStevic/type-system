@@ -1,8 +1,13 @@
 /**
- * Represents a general Type in the type system.
- * Each specific type must extend this abstract class.
+ * Represents an abstract type.
+ *
+ * @remarks
+ * The `Type` class serves as the base class for all types in the system.
+ * It provides common functionality and defines abstract methods that need to be implemented by derived classes.
+ *
+ * @abstract
  */
-abstract class Type {
+export abstract class Type {
 	/**
 	 * Constructs a new Type instance.
 	 *
@@ -91,5 +96,3 @@ abstract class Type {
 		return this.extends(t) || this.name === t.name
 	}
 }
-
-export default Type

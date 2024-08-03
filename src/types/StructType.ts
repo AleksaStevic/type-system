@@ -1,8 +1,8 @@
 import assert from 'assert'
-import Type from './Type'
-import UnionType from './UnionType'
+import { Type } from './Type'
+import { UnionType } from './UnionType'
 
-class StructType extends Type {
+export class StructType extends Type {
 	constructor(private _props: Record<string, Type>) {
 		assert(
 			Object.keys(_props).length > 0,
@@ -74,5 +74,3 @@ class StructType extends Type {
 		})
 	}
 }
-
-export default StructType

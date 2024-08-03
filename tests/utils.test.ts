@@ -1,5 +1,5 @@
-import PrimitiveType from '../src/types/PrimitiveType'
-import { normalize, permute } from '../src/utils'
+import { PrimitiveType } from '@type-system/types'
+import { normalize, permute } from '@type-system/utils'
 
 describe('normalize(types)', () => {
 	test('[] is always normalized', () => {

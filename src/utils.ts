@@ -1,5 +1,5 @@
 import assert from 'assert'
-import Type from './types/Type'
+import { Type } from '@type-system/types'
 
 /**
  * Normalizes an array of types. Doesn't modify the input array, returns a new array.

@@ -1,2 +1,3 @@
-export { default as UnknownTypeError } from './UnknownType'
-export { default as InvalidNameError } from './InvalidName'
+export * from './IncompatibleOperators'
+export * from './InvalidName'
+export * from './UnknownType'

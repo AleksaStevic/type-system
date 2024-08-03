@@ -1,8 +1,8 @@
 import { InvalidNameError, UnknownTypeError } from './errors'
-import PrimitiveType from './types/PrimitiveType'
-import Type from './types/Type'
+import { PrimitiveType } from './types/PrimitiveType'
+import { Type } from './types/Type'
 import assert from 'assert'
-import UnionType from './types/UnionType'
+import { UnionType } from './types/UnionType'
 import { normalize, splitArray } from './utils'
 
 type TypeDef =
@@ -14,9 +14,6 @@ type TypeDef =
 	| string
 
 class TypeSystem {
-	/**
-	 * Type that is the supertype of all other types.
-	 */
 	private _types: Map<string, PrimitiveType> = new Map([
 		['base', new PrimitiveType('base')],
 	])
@@ -36,8 +33,8 @@ class TypeSystem {
 	}
 
 	/**
-	 *
 	 * @param names Type names (of primitive types) or type objects
+	 *
 	 * @returns Union type name or undefined if there is no reason to
 	 * create union type. For example: if the reduced type is a primitive type in the end:
 	 * `real (reals) | im (imaginary numbers)` union is reduced to `num` (all numbers)

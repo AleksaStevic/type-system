@@ -1,14 +1,14 @@
 import assert from 'assert'
-import Type from '../../types/Type'
-import RetType from './RetType'
+import { Type } from '@type-system/types'
+import { Reducer } from './Reducer'
 
-export class AtIndex extends RetType {
+export class AtIndex extends Reducer {
 	constructor(private _i: number) {
 		super()
 	}
 
 	toString(): string {
-		return 'First'
+		return `[${this._i}]`
 	}
 
 	getType(types: Type[]): Type {

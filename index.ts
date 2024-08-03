@@ -1,17 +1,8 @@
-import TypeSystem from './src/TypeSystem'
-import Def from './src/op/Def'
-import Op from './src/op/Op'
-import { ret } from './src/op/ret-type/Identity'
-import { sat } from './src/op/type-constraint/Satisfies'
-import { id } from './src/op/type-constraint/Identity'
-import { widen } from './src/op/ret-type/Widen'
-import TypeParam from './src/op/TypeParam'
-import { larger } from './src/op/type-constraint/Larger'
-import { any } from './src/op/type-constraint/Any'
-import { atIndex } from './src/op/ret-type/AtIndex'
-import { custom } from './src/op/ret-type/Custom'
-import TupleType from './src/types/TupleType'
-import StructType from './src/types/StructType'
+import TypeSystem from '@type-system/TypeSystem'
+import { any, id, larger, sat } from '@type-system/constraints'
+import { Op, TypeParam, Def } from '@type-system/ops'
+import { atIndex, custom, ret, widen } from '@type-system/reducers'
+import { TupleType } from '@type-system/types'
 
 const bool = 'bool'
 const T = 'T'
@@ -102,40 +93,37 @@ ternary.addDef(
 	),
 )
 
-// console.log(ternary.chooseDef([boolT, realT, strT])?.toString())
-// console.log(ternary.exec([boolT, realT, strT])?.toString())
+const tuple = new TupleType([intT, qT])
+console.log(tuple.toString())
 
-// const tuple = new TupleType([intT, qT])
-// console.log(tuple.toString())
+const tupleInt = ts.union(int, tuple)
 
-// const tupleInt = ts.union(int, tuple)
+console.log(tupleInt.toString())
 
-// console.log(tupleInt.toString())
+// const personT = new StructType({
+// 	name: strT,
+// 	age: intT,
+// })
 
-const personT = new StructType({
-	name: strT,
-	age: intT,
-})
+// const womanT = new StructType({
+// 	name: strT,
+// 	age: intT,
+// 	hairColor: strT,
+// })
 
-const womanT = new StructType({
-	name: strT,
-	age: intT,
-	hairColor: strT,
-})
+// const pet = new StructType({
+// 	name: strT,
+// 	race: strT,
+// })
 
-const pet = new StructType({
-	name: strT,
-	race: strT,
-})
+// console.log(pet.extends(personT))
+// console.log(pet.extends(womanT))
+// console.log(pet.commonType(womanT)?.commonType(personT)?.toString())
 
-console.log(pet.extends(personT))
-console.log(pet.extends(womanT))
-console.log(pet.commonType(womanT)?.commonType(personT)?.toString())
+// const dogT = StructType.extends(pet, {
+// 	hasNecklace: boolT,
+// })
 
-const dogT = StructType.extends(pet, {
-	hasNecklace: boolT,
-})
+// console.log(dogT.toString())
 
-console.log(dogT.toString())
-
-console.log(womanT.commonType(personT)?.eq(personT))
+// console.log(womanT.commonType(personT)?.eq(personT))
