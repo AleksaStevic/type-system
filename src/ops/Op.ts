@@ -1,4 +1,5 @@
 import { Type } from '@type-system/types'
+
 import { Def } from './Def'
 
 export class Op {

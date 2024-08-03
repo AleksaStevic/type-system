@@ -1,7 +1,8 @@
+import assert from 'assert'
+
 import { InvalidNameError, UnknownTypeError } from './errors'
 import { PrimitiveType } from './types/PrimitiveType'
 import { Type } from './types/Type'
-import assert from 'assert'
 import { UnionType } from './types/UnionType'
 import { normalize, splitArray } from './utils'
 

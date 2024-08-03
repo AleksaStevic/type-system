@@ -1,4 +1,5 @@
 import assert from 'assert'
+
 import { Type } from '@type-system/types'
 
 /**
@@ -121,7 +122,7 @@ export function permute<T>(arr: T[]) {
 	return result
 }
 
-export function commonType(types: ReadonlyArray<Type>) {
+export function commonType(types: readonly Type[]) {
 	let ct: Type = types[0]
 	for (let i = 1; i < types.length; ++i) {
 		let t = types[i].commonType(ct)

@@ -1,5 +1,7 @@
 import assert from 'assert'
+
 import { Type } from '@type-system/types'
+
 import { Reducer } from './Reducer'
 
 export class AtIndex extends Reducer {

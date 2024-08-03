@@ -1,5 +1,6 @@
-import { Type } from '@type-system/types'
 import assert from 'assert'
+
+import { Type } from '@type-system/types'
 
 export class TypeParam extends Type {
 	private _t: Type | undefined = undefined

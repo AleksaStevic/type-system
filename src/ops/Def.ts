@@ -1,9 +1,11 @@
 import assert from 'assert'
-import { zip } from '../utils'
-import { TypeParam } from './TypeParam'
+
 import { TypeConstraint } from '@type-system/constraints'
 import { Reducer } from '@type-system/reducers'
 import { Type } from '@type-system/types'
+
+import { zip } from '../utils'
+import { TypeParam } from './TypeParam'
 
 export class Def {
 	constructor(

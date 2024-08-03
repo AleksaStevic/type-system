@@ -1,8 +1,8 @@
-import TypeSystem from '@type-system/TypeSystem'
 import { any, id, larger, sat } from '@type-system/constraints'
-import { Op, TypeParam, Def } from '@type-system/ops'
+import { Def, Op, TypeParam } from '@type-system/ops'
 import { atIndex, custom, ret, widen } from '@type-system/reducers'
 import { TupleType } from '@type-system/types'
+import TypeSystem from '@type-system/TypeSystem'
 
 const bool = 'bool'
 const T = 'T'
@@ -93,12 +93,14 @@ ternary.addDef(
 	),
 )
 
+console.log(ternary.exec([boolT, intT, strT])?.toString())
+
 const tuple = new TupleType([intT, qT])
-console.log(tuple.toString())
+// console.log(tuple.toString())
 
 const tupleInt = ts.union(int, tuple)
 
-console.log(tupleInt.toString())
+// console.log(tupleInt.toString())
 
 // const personT = new StructType({
 // 	name: strT,

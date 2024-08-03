@@ -1,4 +1,5 @@
 import assert from 'assert'
+
 import { Type } from './Type'
 import { UnionType } from './UnionType'
 

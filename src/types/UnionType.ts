@@ -1,9 +1,11 @@
 import assert from 'assert'
+
+import TypeSystem from '@type-system/TypeSystem'
+
 import { commonType } from '../utils'
 import { PrimitiveType } from './PrimitiveType'
-import { Type } from './Type'
-import TypeSystem from '@type-system/TypeSystem'
 import { TupleType } from './TupleType'
+import { Type } from './Type'
 
 export class UnionType extends Type {
 	// @TODO missing type sorting

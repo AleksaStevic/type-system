@@ -1,7 +1,9 @@
 import assert from 'assert'
-import { Reducer } from './Reducer'
+
 import { Type } from '@type-system/types'
 import { commonType } from '@type-system/utils'
+
+import { Reducer } from './Reducer'
 
 export class Widen extends Reducer {
 	toString(): string {

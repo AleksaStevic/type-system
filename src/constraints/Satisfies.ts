@@ -1,4 +1,5 @@
 import { Type } from '@type-system/types'
+
 import { TypeConstraint } from './TypeConstraint'
 
 export class Satisfies extends TypeConstraint {

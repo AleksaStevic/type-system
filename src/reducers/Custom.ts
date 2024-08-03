@@ -1,4 +1,5 @@
 import { Type } from '@type-system/types'
+
 import { Reducer } from './Reducer'
 
 export class Custom extends Reducer {

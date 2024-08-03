@@ -1,7 +1,8 @@
-import { Type } from './Type'
 import assert from 'assert'
-import { UnionType } from './UnionType'
+
 import { TupleType } from './TupleType'
+import { Type } from './Type'
+import { UnionType } from './UnionType'
 
 /**
  * Represents a primitive type.
