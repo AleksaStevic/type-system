@@ -2,10 +2,23 @@ import { Type } from '@type-system/types'
 
 import { Def } from './Def'
 
-export class Op {
+type CallableOp = Op & ((...args: Type[]) => Type | undefined)
+
+export class Op extends Function {
 	private _defs: Def[] = []
 
-	constructor(private _name: string) {}
+	private constructor(private _name: string) {
+		super()
+		return new Proxy(this, {
+			apply(target, thisArg, args) {
+				return Reflect.apply(target.exec, target, args)
+			},
+		})
+	}
+
+	static create(name: string) {
+		return new Op(name) as CallableOp
+	}
 
 	get name() {
 		return this._name
@@ -19,10 +32,14 @@ export class Op {
 		// @TODO: check whether there doesn't exist a definition
 		// that has overlaop with the definition you wanna add.
 		this._defs.push(def)
+
+		return this as unknown as CallableOp
 	}
 
 	addDefs(defs: Def[]) {
 		for (const def of defs) this.addDef(def)
+
+		return this as unknown as CallableOp
 	}
 
 	chooseDef(args: Type[]) {
@@ -40,7 +57,7 @@ export class Op {
 		return defs[0]
 	}
 
-	exec(args: Type[]) {
+	exec(...args: Type[]) {
 		return this.chooseDef(args)?.retType.getType(args)
 	}
 }

@@ -1,8 +1,8 @@
 import { any, id, larger, sat } from '@type-system/constraints'
+import { Context } from '@type-system/Context'
 import { Def, Op, TypeParam } from '@type-system/ops'
 import { atIndex, custom, ret, widen } from '@type-system/reducers'
 import { TupleType } from '@type-system/types'
-import TypeSystem from '@type-system/TypeSystem'
 
 const bool = 'bool'
 const T = 'T'
@@ -24,7 +24,7 @@ const i = 'i'
 const int = 'int'
 const nat = 'nat'
 
-const ts = new TypeSystem([
+const ts = new Context([
 	{
 		name: bool,
 		covered: true,
@@ -68,64 +68,48 @@ const numT = ts.primitive(num)
 const intT = ts.primitive(int)
 const realT = ts.primitive(real)
 const qT = ts.primitive(q)
+const iT = ts.primitive(i)
 const strT = ts.primitive(str)
 const TT = ts.primitive(T)
 const FT = ts.primitive(F)
 const boolT = ts.primitive(bool)
 
-const add = new Op('+')
-add.addDef(new Def([sat(numT), sat(numT)], widen()))
-add.addDef(new Def([id(strT), sat(ts.union(strT, numT))], ret(strT)))
+const binaryNumOpDef = new Def([sat(numT), sat(numT)], widen())
 
-const cast = new Op('cast')
-const t = new TypeParam('t')
-cast.addDef(new Def([[t, sat(numT)], larger(t)], widen()))
+const add = Op.create('+')
+	.addDef(binaryNumOpDef)
+	.addDef(new Def([sat(strT), sat(intT)], ret(strT)))
+	.addDef(new Def([sat(intT), sat(strT)], ret(strT)))
+	.addDef(new Def([sat(strT), sat(strT)], ret(strT)))
+const sub = Op.create('-').addDef(binaryNumOpDef)
+const mul = Op.create('*').addDef(binaryNumOpDef)
+const div = Op.create('/').addDef(binaryNumOpDef)
 
-const ternary = new Op('?:')
-ternary.addDef(new Def([id(TT), any(), any()], atIndex(1)))
-ternary.addDef(new Def([id(FT), any(), any()], atIndex(2)))
-ternary.addDef(
-	new Def(
-		[id(boolT), any(), any()],
-		custom(types => {
-			return ts.union(types[1], types[2])
-		}, '$1 | $2'),
-	),
-)
+const resultType = mul(add(intT, realT)!, iT)
+const result2 = add(strT, intT)
 
-console.log(ternary.exec([boolT, intT, strT])?.toString())
+console.log(resultType?.toString())
+console.log(result2?.toString())
 
-const tuple = new TupleType([intT, qT])
-// console.log(tuple.toString())
+const twoNumbersRetBool = new Def([sat(numT), sat(numT)], ret(boolT))
 
-const tupleInt = ts.union(int, tuple)
+const gt = Op.create('>')
+gt.addDef(twoNumbersRetBool)
+const lt = Op.create('<')
+lt.addDef(twoNumbersRetBool)
+const gte = Op.create('>=')
+gte.addDef(twoNumbersRetBool)
+const lte = Op.create('<=')
+lte.addDef(twoNumbersRetBool)
 
-// console.log(tupleInt.toString())
-
-// const personT = new StructType({
-// 	name: strT,
-// 	age: intT,
-// })
-
-// const womanT = new StructType({
-// 	name: strT,
-// 	age: intT,
-// 	hairColor: strT,
-// })
-
-// const pet = new StructType({
-// 	name: strT,
-// 	race: strT,
-// })
-
-// console.log(pet.extends(personT))
-// console.log(pet.extends(womanT))
-// console.log(pet.commonType(womanT)?.commonType(personT)?.toString())
-
-// const dogT = StructType.extends(pet, {
-// 	hasNecklace: boolT,
-// })
-
-// console.log(dogT.toString())
-
-// console.log(womanT.commonType(personT)?.eq(personT))
+// const ternary = new Op('?:')
+// ternary.addDef(new Def([id(TT), any(), any()], atIndex(1)))
+// ternary.addDef(new Def([id(FT), any(), any()], atIndex(2)))
+// ternary.addDef(
+// 	new Def(
+// 		[id(boolT), any(), any()],
+// 		custom(types => {
+// 			return ts.union(types[1], types[2])
+// 		}, '$1 | $2'),
+// 	),
+// )

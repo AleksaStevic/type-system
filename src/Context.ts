@@ -14,7 +14,7 @@ type TypeDef =
 	  }
 	| string
 
-class TypeSystem {
+export class Context {
 	private _types: Map<string, PrimitiveType> = new Map([
 		['base', new PrimitiveType('base')],
 	])
@@ -170,5 +170,3 @@ class TypeSystem {
 			.concat(otherTypes)
 	}
 }
-
-export default TypeSystem
