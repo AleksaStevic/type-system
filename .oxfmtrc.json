@@ -1,0 +1,18 @@
+{
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"semi": false,
+	"useTabs": true,
+	"tabWidth": 2,
+	"singleQuote": true,
+	"arrowParens": "avoid",
+	"printWidth": 80,
+	"sortPackageJson": false,
+	"sortImports": {
+		"groups": [
+			"builtin",
+			["external", "internal", "subpath"],
+			["parent", "sibling", "index"],
+			"unknown"
+		]
+	}
+}

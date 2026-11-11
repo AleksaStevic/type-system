@@ -10,7 +10,7 @@
 		"skipLibCheck": true,
 		"experimentalDecorators": true,
 		"moduleResolution": "Bundler",
-		"baseUrl": ".",
+		"types": ["node", "vitest/globals"],
 		"paths": {
 			"@type-system/*": ["./src/*"]
 		}
