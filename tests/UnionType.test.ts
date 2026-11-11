@@ -1,4 +1,4 @@
-import TypeSystem from '@type-system/TypeSystem'
+import { Context as TypeSystem } from '@type-system/Context'
 
 const bool = 'bool'
 const T = 'T'

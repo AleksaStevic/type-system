@@ -1,6 +1,6 @@
+import { Context as TypeSystem } from '@type-system/Context'
 import { InvalidNameError } from '@type-system/errors'
 import { PrimitiveType } from '@type-system/types'
-import TypeSystem from '@type-system/TypeSystem'
 
 describe('Type Creation', () => {
 	test('base type is created automatically', () => {

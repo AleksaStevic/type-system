@@ -1,6 +1,6 @@
 import assert from 'assert'
 
-import TypeSystem from '@type-system/TypeSystem'
+import type { Context as TypeSystem } from '@type-system/Context'
 
 import { commonType } from '../utils'
 import { PrimitiveType } from './PrimitiveType'
